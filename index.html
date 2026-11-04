@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediCycle: AI Smart Medicine Waste Management System</title>
+<meta name="description" content="Scan a medicine pack. MediCycle reads the expiry date in your browser, tracks opened medicines and shows what to throw away.">
+<meta name="theme-color" content="#F6F6F4">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <a class="logo" href="#" id="logoLink">Medi<b>Cycle</b></a><span class="tagline">AI Smart Medicine Waste Management System</span>
+  <nav class="nav" aria-label="Main">
+    <a href="#how" data-nav="how">How it works</a>
+    <a href="#" id="navSample">Try a sample</a>
+    <a href="#about" data-nav="about">About</a>
+  </nav>
+  <button class="lang" id="langBtn" type="button" aria-label="Switch language">EN | తెలుగు</button>
+</header>
+
+<div id="alertBar" class="alert" role="status" hidden></div>
+
+<!-- ============ HOME ============ -->
+<main id="home" class="view">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1 class="rv" style="--d:0s">Check the date before you take it.</h1>
+      <div class="rule rv" style="--d:.1s"></div>
+      <p class="lede rv" style="--d:.2s">Scan a medicine pack. MediCycle reads the expiry date, remembers when you opened it, and tells you what to throw away.</p>
+      <div class="cta rv" style="--d:.3s">
+        <button class="btn-dark" id="ctaScan" type="button">Scan a medicine</button>
+        <button class="btn-link" id="ctaSample" type="button">Try a sample photo</button>
+      </div>
+      <p class="fine rv" style="--d:.4s">Runs in your browser. Nothing is uploaded. It helps you check dates and does not replace your pharmacist.</p>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true">
+      <svg viewBox="0 0 700 820" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="22" stdDeviation="16" flood-color="#000" flood-opacity=".18"/></filter>
+<linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEF0EF"/><stop offset=".45" stop-color="#C9CFCD"/><stop offset=".6" stop-color="#E4E7E6"/><stop offset="1" stop-color="#B7BEBB"/></linearGradient>
+<radialGradient id="cell" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="#FAFBFA"/><stop offset=".6" stop-color="#D3D8D6"/><stop offset="1" stop-color="#A9B1AE"/></radialGradient>
+<linearGradient id="side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#DCDCD6"/><stop offset="1" stop-color="#C6C6BF"/></linearGradient>
+</defs>
+<g class="carton-g">
+<g transform="translate(36,44) rotate(3 230 170)" filter="url(#sh)">
+ <polygon points="0,46 46,0 466,0 420,46" fill="#F4F4F0" stroke="#D2D2CC"/>
+ <polygon points="420,46 466,0 466,300 420,346" fill="url(#side)" stroke="#C2C2BB"/>
+ <rect x="0" y="46" width="420" height="300" fill="#FDFDFB" stroke="#D2D2CC"/>
+ <rect x="0" y="276" width="420" height="70" fill="#0E0E0E"/>
+ <rect x="0" y="270" width="420" height="6" fill="#D4202A"/>
+ <text x="30" y="128" font-family="Plex" font-weight="600" font-size="46" fill="#0E0E0E" letter-spacing="-1.5">Calcium</text>
+ <text x="30" y="164" font-family="Plex" font-weight="500" font-size="20" fill="#0E0E0E">Tablets I.P. 500 mg</text>
+ <text x="30" y="200" font-family="Plex" font-size="13.5" fill="#55554f">Each film-coated tablet contains calcium</text>
+ <text x="30" y="218" font-family="Plex" font-size="13.5" fill="#55554f">carbonate equivalent to elemental calcium.</text>
+ <text x="30" y="318" font-family="Plex" font-weight="600" font-size="17" fill="#fff">10 × 10 tablets</text>
+ <text x="300" y="318" font-family="Plex" font-size="13" fill="#d9d9d4">Store below 25°C</text>
+ <rect x="318" y="76" width="72" height="30" fill="none" stroke="#0E0E0E" stroke-width="2"/><text x="354" y="97" text-anchor="middle" font-family="Plex" font-weight="600" font-size="16" fill="#0E0E0E">500 mg</text>
+</g>
+</g><g class="strip-g">
+<g transform="translate(22,372) rotate(-6 310 130)" filter="url(#sh)">
+ <rect width="650" height="270" rx="20" fill="url(#foil)" stroke="#A3ABA8" stroke-width="1.5"/>
+ <rect x="8" y="8" width="634" height="254" rx="14" fill="none" stroke="#fff" stroke-opacity=".6"/>
+ <g transform="translate(14,6)"><line x1="142" y1="14" x2="142" y2="206" stroke="#8E9794" stroke-opacity=".55" stroke-dasharray="3 5"/><line x1="258" y1="14" x2="258" y2="206" stroke="#8E9794" stroke-opacity=".55" stroke-dasharray="3 5"/><line x1="374" y1="14" x2="374" y2="206" stroke="#8E9794" stroke-opacity=".55" stroke-dasharray="3 5"/><line x1="490" y1="14" x2="490" y2="206" stroke="#8E9794" stroke-opacity=".55" stroke-dasharray="3 5"/><circle cx="84" cy="74" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="84" cy="74" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="200" cy="74" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="200" cy="74" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="316" cy="74" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="316" cy="74" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="432" cy="74" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="432" cy="74" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="548" cy="74" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="548" cy="74" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="84" cy="170" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="84" cy="170" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="200" cy="170" r="41" fill="url(#cell)" stroke="#9AA3A0" stroke-width="1.5"/><circle cx="200" cy="170" r="33" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/><circle cx="316" cy="170" r="41" fill="#D7DBD9" stroke="#8E9794" stroke-width="1.5"/><circle cx="316" cy="170" r="31" fill="#B9C0BD"/><path d="M294 156 q22 -26 44 0" fill="none" stroke="#8E9794" stroke-width="2" stroke-dasharray="4 4"/><circle cx="432" cy="170" r="41" fill="#D7DBD9" stroke="#8E9794" stroke-width="1.5"/><circle cx="432" cy="170" r="31" fill="#B9C0BD"/><path d="M410 156 q22 -26 44 0" fill="none" stroke="#8E9794" stroke-width="2" stroke-dasharray="4 4"/><circle cx="548" cy="170" r="41" fill="#D7DBD9" stroke="#8E9794" stroke-width="1.5"/><circle cx="548" cy="170" r="31" fill="#B9C0BD"/><path d="M526 156 q22 -26 44 0" fill="none" stroke="#8E9794" stroke-width="2" stroke-dasharray="4 4"/></g>
+ <text x="30" y="250" font-family="Plex" font-weight="600" font-size="15" fill="#3A4340" letter-spacing=".5">B.No. KT2291</text>
+ <text x="200" y="250" font-family="Plex" font-weight="600" font-size="15" fill="#3A4340" letter-spacing=".5">MFG 08/2025</text>
+ <rect class="hlrect" x="378" y="230" width="132" height="30" fill="#FFF0A0" fill-opacity=".85"/>
+ <text x="388" y="250" font-family="Plex" font-weight="700" font-size="16" fill="#1A1A1A" letter-spacing=".5">EXP 08/2027</text>
+ <rect class="expbox" pathLength="1" x="372" y="226" width="144" height="38" fill="none" stroke="#D4202A" stroke-width="3"/><rect class="scanline" x="8" y="0" width="634" height="3" fill="#D4202A"/>
+ <text x="540" y="250" font-family="Plex" font-size="13" fill="#6a726f">Calcium 500</text>
+</g>
+</g></svg>
+      <div class="cb" id="heroCall"><b>Expires Aug 2027</b><span><i id="heroMonths">9</i> months left. Read with 91% confidence.</span></div>
+      <div class="cline" id="heroLine"></div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><b>Photograph the date.</b> Get close to the line that says EXP, in good light.</li>
+      <li><b>Check what it read.</b> MediCycle shows the date, how sure it is, and lets you fix it.</li>
+      <li><b>Keep track.</b> Save it to your cabinet. Opened syrups and drops get their own shorter deadline.</li>
+    </ol>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About</h2>
+    <p>MediCycle reads expiry dates from photos using OCR that runs on your device. Photos are not uploaded and your cabinet is saved only in this browser. The Ask tab answers from a small guide with a source for every answer, and it declines dosing and medical questions.</p>
+    <p>MediCycle does not replace advice from your pharmacist or doctor. Always check the date on the pack yourself.</p>
+  </section>
+</main>
+
+<!-- ============ APP ============ -->
+<main id="app" class="view" hidden>
+  <div class="shell">
+
+    <!-- SCAN -->
+    <section id="tab-scan" class="tab" aria-label="Scan">
+      <div class="tabhead">
+        <h1 class="h">Scan a medicine</h1>
+        <p class="sm" data-i18n="scanHint">Photograph the printed date on the pack, close up and in good light.</p>
+      </div>
+
+      <div id="scanStart">
+        <label class="drop" for="file" id="dropBtn">
+          <b>Take a photo or upload</b>
+          <span>Point the camera at the line with EXP</span>
+        </label>
+        <input type="file" id="file" accept="image/*" capture="environment" hidden>
+        <div class="samples">
+          <p class="sm">Or try a demo sample</p>
+          <div class="thumbs" id="thumbs"></div>
+          <p class="tiny">Demo samples are illustrations made for this app.</p>
+        </div>
+      </div>
+
+      <div id="scanWork" hidden>
+        <div class="photo" id="photoBox">
+          <img id="photo" alt="Medicine pack photo">
+          <div class="datebox" id="dateBox" hidden></div>
+          <div class="beam" id="beam" hidden></div>
+        </div>
+        <div class="progress" id="progress">
+          <span id="progressText">Reading the pack…</span>
+          <div class="bar"><i id="progressBar"></i></div>
+        </div>
+
+        <div id="result" hidden>
+          <div class="pad">
+            <p class="sm" id="resLabel">Printed expiry date</p>
+            <div class="big" id="resDate">Aug 2027</div>
+            <div class="st" id="resStatus">Sealed: 9 months left</div>
+            <div class="te" id="resStatusTe" hidden></div>
+            <div class="cells" id="resCells"></div>
+            <div class="axis" id="resAxis"></div>
+          </div>
+
+          <div class="fix" id="fixRow" hidden>
+            <label>Month
+              <select id="fixMonth"></select>
+            </label>
+            <label>Year
+              <input id="fixYear" type="number" min="2015" max="2045" inputmode="numeric">
+            </label>
+          </div>
+
+          <div class="note warn" id="lowConf" hidden></div>
+          <div class="note hl" id="openNote" hidden></div>
+
+          <div class="form pad">
+            <label>Medicine name
+              <input id="itemName" type="text" maxlength="40" placeholder="For example: Calcium tablets">
+            </label>
+            <label>Type
+              <select id="itemCat">
+                <option value="tablet">Tablets or capsules</option>
+                <option value="liquid">Syrup or liquid</option>
+                <option value="drops">Eye or ear drops</option>
+                <option value="cream">Cream, gel or ointment</option>
+              </select>
+            </label>
+            <div id="openedBlock" hidden>
+              <label class="check"><input type="checkbox" id="isOpened"> Already opened</label>
+              <div class="two" id="openedFields" hidden>
+                <label>Opened on
+                  <input type="date" id="openedOn">
+                </label>
+                <label>Use within (days)
+                  <input type="number" id="openDays" min="1" max="365" inputmode="numeric">
+                </label>
+              </div>
+              <p class="tiny" id="openHint"></p>
+            </div>
+            <label>Price paid, in rupees (optional)
+              <input id="itemPrice" type="number" min="0" inputmode="numeric" placeholder="For the waste report">
+            </label>
+          </div>
+
+          <div class="conf pad"><span id="confText">Read 91% sure</span><div class="bar"><i id="confBar"></i></div></div>
+
+          <div class="actions">
+            <button class="blk" id="saveBtn" type="button">Save to cabinet</button>
+            <button class="ul" id="fixBtn" type="button">Fix date</button>
+          </div>
+          <div class="actions2">
+            <button class="ul" id="speakBtn" type="button">Read aloud</button>
+            <button class="ul" id="againBtn" type="button">Scan another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CABINET -->
+    <section id="tab-cabinet" class="tab" aria-label="Cabinet" hidden>
+      <div class="tabhead">
+        <h1 class="h">My cabinet</h1>
+        <p class="sm" id="cabSummary">0 medicines</p>
+        <div class="profiles">
+          <label>Whose medicines?
+            <select id="profileSel"></select>
+          </label>
+          <button class="ul" id="addProfile" type="button">Add person</button>
+        </div>
+        <div class="score" id="score" hidden><b id="scoreNum">100</b><span>Cabinet score: share of medicines that are safe to use</span></div>
+      </div>
+      <div class="filters" id="filters" role="tablist">
+        <button class="on" data-f="all" type="button">All</button>
+        <button data-f="soon" type="button">Use soon</button>
+        <button data-f="expired" type="button">Expired</button>
+      </div>
+      <div id="cabList"></div>
+      <div class="empty" id="cabEmpty" hidden>
+        <p><b>Your cabinet is empty.</b></p>
+        <p class="sm">Scan a pack and save it here, or load demo data to see how it looks.</p>
+        <button class="ul" id="loadDemo" type="button">Load demo data</button>
+      </div>
+      <div class="actions2 pad">
+        <button class="ul" id="printBtn" type="button">Print pharmacist report</button>
+        <button class="ul" id="clearBtn" type="button">Clear all data</button>
+      </div>
+      <p class="tiny pad" id="demoTag" hidden>Demo data is loaded. Clear all data removes it.</p>
+    </section>
+
+    <!-- ASK -->
+    <section id="tab-ask" class="tab" aria-label="Ask" hidden>
+      <div class="tabhead">
+        <h1 class="h">Ask about your medicines</h1>
+        <p class="sm">Ask about the medicines you scanned, or about storing and disposing of medicines. Dosing and medical questions are declined.</p>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div id="chat" class="chat" aria-live="polite"></div>
+      <form id="askForm" class="askbar">
+        <input id="askInput" type="text" placeholder="Ask a question" autocomplete="off" aria-label="Ask a question">
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <!-- REPORT -->
+    <section id="tab-report" class="tab" aria-label="Report" hidden>
+      <div class="tabhead">
+        <p class="sm">Medicine wasted this year</p>
+        <div class="rs" id="rsTotal">₹0</div>
+        <p class="sm" id="rsCount">0 items expired before use</p>
+      </div>
+      <div class="bars" id="bars"></div>
+      <div class="mon" id="mon"></div>
+      <div class="note hl" id="dispNote"></div>
+      <div class="note flag" id="dispFlag" hidden></div>
+      <p class="fine pad">MediCycle helps you check dates. It does not replace advice from your pharmacist or doctor. Rupee totals use the prices you enter.</p>
+    </section>
+
+    <nav class="tabbar" id="tabbar" aria-label="App sections">
+      <button data-tab="scan" class="on" type="button"><span data-i18n="tabScan">Scan</span></button>
+      <button data-tab="cabinet" type="button"><span data-i18n="tabCabinet">Cabinet</span></button>
+      <button data-tab="ask" type="button"><span data-i18n="tabAsk">Ask</span></button>
+      <button data-tab="report" type="button"><span data-i18n="tabReport">Report</span></button>
+    </nav>
+  </div>
+</main>
+
+<div id="printSheet" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="vendor/tesseract.min.js"></script>
+<script src="parse.js"></script>
+<script src="kb.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
